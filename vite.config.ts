@@ -26,10 +26,9 @@ export default defineConfig(({ mode }) => ({
   test: {
     environment: "jsdom",
     globals: true,
-    include: ["src/lib/utils.test.ts"],
     coverage: {
       provider: "v8",
-      include: ["src/lib/utils.ts"], // Restrict coverage calculation to solely our perfectly tested utils file
+      exclude: ["test-generator.cjs"],
       all: false
     }
   }
