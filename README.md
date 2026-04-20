@@ -1,6 +1,4 @@
 <div align="center">
-  <img src="docs/favicon.svg" alt="Antigravity Logo" width="120" />
-
   <h1>🏟️ VenueFlow</h1>
   <p><strong>Physical Event Experience Reimagined</strong></p>
   <p><em>Official Submission for PromptWars: The Ultimate AI Challenge by Google</em></p>
@@ -9,6 +7,7 @@
     <img src="https://img.shields.io/badge/Google_Gemini-8E75B2?style=for-the-badge&logo=googlebard&logoColor=white" alt="Gemini AI" />
     <img src="https://img.shields.io/badge/Google_Cloud-4285F4?style=for-the-badge&logo=googlecloud&logoColor=white" alt="Google Cloud" />
     <img src="https://img.shields.io/badge/Firebase_Analytics-FFCA28?style=for-the-badge&logo=firebase&logoColor=black" alt="Firebase" />
+    <img src="https://img.shields.io/badge/Google_Maps-4285F4?style=for-the-badge&logo=googlemaps&logoColor=white" alt="Google Maps" />
     <img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" alt="React" />
     <img src="https://img.shields.io/badge/Vitest-Coverage_Tested-729B1B?style=for-the-badge&logo=vitest&logoColor=white" alt="Vitest" />
   </p>
@@ -34,15 +33,6 @@ Large-scale events are plagued by navigational confusion, bottlenecked crowd mov
 
 ## 📸 Application Showcase
 
-### 🎥 Full Video Walkthrough
-*(Click to play WebP demonstration of Login, Live Map Navigation, and Gemini AI interaction)*
-
-<div align="center">
-  <a href="./docs/demo.webp">
-    <img src="./docs/demo.webp" alt="VenueFlow App Demo" width="800" />
-  </a>
-</div>
-
 ### 🎨 Interface Highlights
 
 | Live Venue Flow Map & Navigation | Context-Aware Gemini AI Assistant |
@@ -66,7 +56,7 @@ VenueFlow is built to be fast, scalable, and resilient.
 
 VenueFlow fully leverages Google's global infrastructure:
 
-1. 🧠 **Google Gemini API:** Utilizes the lightweight `gemini-1.5-flash-latest` model to ensure mobile data users experience zero delay in AI decision-making. Responses stream instantly.
+1. 🧠 **Google Gemini API:** Utilizes the lightweight `gemini-3.1-flash-preview` model to ensure mobile data users experience zero delay in AI decision-making. Responses stream instantly.
 2. 🚀 **Google Cloud Run:** The application is 100% containerized (`Dockerfile` + `nginx.conf`) and deployed frictionlessly via serverless Google Cloud Run.
 3. 📊 **Google Firebase:** Embedded initial Firebase Analytics initialization hooks to track user engagement and emergency app flow metrics effortlessly.
 

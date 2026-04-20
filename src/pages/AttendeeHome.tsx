@@ -6,6 +6,7 @@ import BottomNav from "@/components/BottomNav";
 import EmergencySOS from "@/components/EmergencySOS";
 import { useZones } from "@/hooks/useZones";
 import { useSessions } from "@/hooks/useSessions";
+import VenueLocationMap from "@/components/VenueLocationMap";
 import { useAuth } from "@/hooks/useAuth";
 
 const AttendeeHome = () => {
@@ -77,6 +78,13 @@ const AttendeeHome = () => {
               </div>
             ))}
           </div>
+        </section>
+
+        <section>
+          <div className="mb-3 flex items-center justify-between">
+            <h3 className="text-xs font-medium uppercase tracking-widest text-muted-foreground">Directions to Venue</h3>
+          </div>
+          <VenueLocationMap />
         </section>
 
         <section>

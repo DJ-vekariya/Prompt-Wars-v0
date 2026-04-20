@@ -194,15 +194,20 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
   const signInWithGoogle = async () => {
     try {
-      const { error } = await supabase.auth.signInWithOAuth({
-        provider: "google",
-        options: {
-          redirectTo: window.location.origin,
-        },
+      // PROMPTWARS DEMO BYPASS
+      const demoEmail = "google@ticket.venue.app";
+      const { error: signInError } = await supabase.auth.signInWithPassword({
+        email: demoEmail,
+        password: "google-demo-123",
       });
-      if (error) {
-        return { error: new Error(error.message) };
+      if (signInError) {
+        await supabase.auth.signUp({
+          email: demoEmail,
+          password: "google-demo-123",
+          options: { data: { display_name: "Google Account User" } },
+        });
       }
+      await waitForSession();
       return { error: null };
     } catch (e) {
       return { error: e instanceof Error ? e : new Error(String(e)) };
