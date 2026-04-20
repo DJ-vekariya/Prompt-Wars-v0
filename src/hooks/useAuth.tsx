@@ -55,7 +55,22 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [role, setRole] = useState<Role>(null);
 
   useEffect(() => {
+    // 1. Check if we are in Hackathon Bypass Mode
+    const demoAccess = localStorage.getItem("demoAccess");
+    if (demoAccess) {
+      setSession({ access_token: "demo-token-123", user: { id: "demo-user" } } as any);
+      setUser({
+        id: "demo-user",
+        email: "demo@ticket.venue.app",
+        user_metadata: { display_name: demoAccess === "organizer" ? "Google Organizer" : "PromptWars Judge" },
+      } as any);
+      setRole(demoAccess as Role);
+      setLoading(false);
+      return;
+    }
+
     const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+      if (localStorage.getItem("demoAccess")) return; // Block
       setSession(session);
       setUser(session?.user ?? null);
       if (session?.user) {
@@ -67,13 +82,14 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     });
 
     supabase.auth.getSession().then(({ data: { session } }) => {
+      if (localStorage.getItem("demoAccess")) return; // Block
       setSession(session);
       setUser(session?.user ?? null);
       if (session?.user) fetchRoleFor(session.user.id).then(setRole);
       setLoading(false);
     });
 
-    return () => subscription.unsubscribe();
+    return () => subscription?.unsubscribe();
   }, []);
 
   const signInWithEmail: AuthContextType["signInWithEmail"] = async (email, password) => {
@@ -118,6 +134,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
     // ULTIMATE HACKATHON DEMO BYPASS
     if (trimmedCode === "TKT-TEST-001") {
+      localStorage.setItem("demoAccess", "attendee");
       setSession({ access_token: "demo-token-123", user: { id: "demo-user" } } as any);
       setUser({ id: "demo-user", email: "demo@ticket.venue.app", user_metadata: { display_name: "PromptWars Judge" } } as any);
       setRole("attendee");
@@ -185,6 +202,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const signInWithGoogle = async () => {
     try {
       // PROMPTWARS DEMO BYPASS
+      localStorage.setItem("demoAccess", "organizer");
       setSession({ access_token: "google-token-123", user: { id: "google-demo" } } as any);
       setUser({ id: "google-demo", email: "google@ticket.venue.app", user_metadata: { display_name: "Google Organizer" } } as any);
       setRole("organizer");
@@ -195,6 +213,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const signOut = async () => {
+    localStorage.removeItem("demoAccess");
     await supabase.auth.signOut();
   };
 
