@@ -1,0 +1,95 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --font-display: 'Outfit', sans-serif;
+    --font-body: 'Inter', sans-serif;
+
+    --background: 240 10% 3.9%;
+    --foreground: 240 5% 90%;
+
+    --card: 240 6% 7%;
+    --card-foreground: 240 5% 90%;
+
+    --popover: 240 6% 7%;
+    --popover-foreground: 240 5% 90%;
+
+    --primary: 43 25% 52%;
+    --primary-foreground: 240 10% 3.9%;
+
+    --secondary: 240 4% 16%;
+    --secondary-foreground: 240 5% 90%;
+
+    --muted: 240 4% 16%;
+    --muted-foreground: 240 5% 46%;
+
+    --accent: 240 4% 16%;
+    --accent-foreground: 240 5% 90%;
+
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 240 4% 16%;
+    --input: 240 4% 16%;
+    --ring: 43 25% 52%;
+
+    --radius: 0.75rem;
+
+    --crowd-green: 158 60% 36%;
+    --crowd-amber: 33 85% 55%;
+    --crowd-red: 0 70% 55%;
+
+    --sidebar-background: 240 6% 7%;
+    --sidebar-foreground: 240 5% 90%;
+    --sidebar-primary: 43 25% 52%;
+    --sidebar-primary-foreground: 240 10% 3.9%;
+    --sidebar-accent: 240 4% 16%;
+    --sidebar-accent-foreground: 240 5% 90%;
+    --sidebar-border: 240 4% 16%;
+    --sidebar-ring: 43 25% 52%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground font-body antialiased;
+    font-family: var(--font-body);
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+  }
+}
+
+@layer utilities {
+  .font-display {
+    font-family: var(--font-display);
+  }
+  .font-body {
+    font-family: var(--font-body);
+  }
+  .text-crowd-green {
+    color: hsl(var(--crowd-green));
+  }
+  .text-crowd-amber {
+    color: hsl(var(--crowd-amber));
+  }
+  .text-crowd-red {
+    color: hsl(var(--crowd-red));
+  }
+  .bg-crowd-green {
+    background-color: hsl(var(--crowd-green));
+  }
+  .bg-crowd-amber {
+    background-color: hsl(var(--crowd-amber));
+  }
+  .bg-crowd-red {
+    background-color: hsl(var(--crowd-red));
+  }
+}
